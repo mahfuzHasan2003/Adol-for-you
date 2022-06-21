@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Radio Button</title>
+   <style>
+      @import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@200&display=swap');
+      *{
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Anek Bangla', sans-serif;
+      }
+      .container{
+         height: 100vh;
+         display: grid;
+         place-items: center;
+         background-color: #e5e5e5;
+      }
+      .radio-button{
+         width: 90%;
+         max-width: 330px;
+         background-color: #fff;
+         box-shadow: 0 0 10px lightgray;
+         border-radius: 10px;
+      }
+      .radio-button h2{
+         text-align: center;
+         background-color: #333;
+         color: #fff;
+         line-height: 50px;
+         border-radius: 10px 10px 0 0;
+         word-spacing: 5px;
+      }
+      .options{
+         margin: 10px;
+         margin-top: 20px;
+      }
+      .options label{
+         border: 2px solid #333;
+         display: flex;
+         align-items: center;
+         padding: 10px;
+         margin: 7px 0;
+         border-radius: 50px;
+         transition: all 0.3s;
+      }
+      label .dot{
+         width: 20px;
+         height: 20px;
+         background-color: #e5e5e5;
+         border-radius: 50%;
+         margin-right: 8px;
+         position: relative;
+      }
+      label .dot::before{
+         content: "";
+         width: 10px;
+         height: 10px;
+         background-color: #333;
+         position: absolute;
+         border-radius: 50%;
+         top: 50%; left: 50%;
+         transform: translate(-50%, -50%) scale(2);
+         opacity: 0;
+      }
+      label .text{
+         font-size: 17px;
+         font-weight: 600;
+         word-spacing: 5px;
+      }
+      #option-1:checked ~ .option-1,
+      #option-2:checked ~ .option-2{
+         background-color: #333;
+         color: #fff;
+      }
+      #option-1:checked ~ .option-1 .dot::before,
+      #option-2:checked ~ .option-2 .dot::before{
+         opacity: 1;
+         transform: translate(-50%, -50%) scale(1);
+      }
+      input[type="radio"]{
+         display: none;
+      }
+      #show-me{
+         width: 90%;
+         max-width: 330px;
+         border: 2px solid #333;
+         box-shadow: 0 0 10px rgb(170, 170, 170);
+         border-radius: 10px;
+         padding: 2px 7px 7px 10px; 
+         position: relative;
+         display: none;
+      }
+      #show-me img{
+         height: 120px;
+         border-radius: 50%;
+         border: 2px solid #333;
+         position: absolute;
+         top: -60px; left: 50%;
+         transform: translateX(-50%);
+      }
+      #show-me p{
+         margin-top: 65px;
+         overflow-wrap: break-word;
+         line-height: 15px;
+         transition: display 0.3s;
+         transition-delay: 3s;
+      }
+      #hide-me{
+         font-size: 100px;
+         display: none;
+      }
+   </style>
+</head>
+<body>
+   <div class="container">
+      <div class="radio-button">
+         <h2> একতু আদল লাগভে?☹️</h2>
+         <div class="options">
+            <input type="radio" name="select" id="option-1">
+            <input type="radio" name="select" id="option-2">
+            <label for="option-1" class="option-1" onclick="yes()">
+               <div class="dot"></div>
+               <div class="text">হ্যাঁ লাগবে 🥺</div>
+            </label>
+            <label for="option-2" class="option-2" onclick="no()">
+               <div class="dot"></div>
+               <div class="text">না দরকার নাই 🙂</div>
+            </label>
+         </div>
+      </div>
+
+      <div id="show-me">
+         <img src="Images/Aytizza.jpg">
+         <p id="typingEffect"> </p>
+      </div>
+      <div id="hide-me">
+         🙂
+      </div>
+   </div>
+
+
+   <script>
+      var radioButton = document.querySelector(".radio-button");
+      var showMe = document.getElementById("show-me");
+      var hideMe = document.getElementById("hide-me");
+
+      var i = 0, text;
+      text = "'Adol' for the following picture's mam☹️. Ummmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhhhh😘"
+      function typing(){
+         if(i<text.length){
+            document.getElementById("typingEffect").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typing, 50);
+         }
+      }
+
+      function yes(){
+         radioButton.style.display = "none";
+         showMe.style.display = "block";
+         typing();
+      }
+      function no(){
+         radioButton.style.display = "none";
+         hideMe.style.display = "block";
+      }
+   </script>
+</body>
+</html>
